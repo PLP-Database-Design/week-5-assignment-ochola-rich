@@ -26,16 +26,13 @@ This demonstrates the cconnection of MySQL database and Node.js to create a simp
    const app = express()
 
    
-   // Question 1 goes here
+  
 
 
-   // Question 2 goes here
 
 
-   // Question 3 goes here
 
 
-   // Question 4 goes here
 
    
 

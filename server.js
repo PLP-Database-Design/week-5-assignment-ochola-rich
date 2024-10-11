@@ -38,7 +38,8 @@ app.set('views', __dirname + '/views');
 
 // Data is a file found in the Views folder 
 
-app.get('/data', (req,res) => {
+ // Question 1 goes here
+app.get('/patients', (req,res) => {
 
     // Retrieve data from database 
     db.query('SELECT * FROM patients', (err, results) =>{
@@ -52,16 +53,56 @@ app.get('/data', (req,res) => {
     });
 });
 
-// <Your code goes up there
+   // Question 2 goes here
+app.get('/providers', (req,res) => {
+
+    // Retrieve data from database 
+    db.query('SELECT * FROM providers', (err, results) =>{
+        if (err){
+            console.error(err);
+            res.status(500).send('Error Retrieving data')
+        }else {
+            //Display the records to the browser 
+            res.render('data', {results: results});
+        }
+    });
+});
+
+   // Question 3 goes here
+
+app.get('/patientsFirst', (req,res) => {
+
+    // Retrieve data from database 
+    db.query('SELECT patient_id, first_name FROM patients', (err, results) =>{
+        if (err){
+            console.error(err);
+            res.status(500).send('Error Retrieving data')
+        }else {
+            //Display the records to the browser 
+            res.render('data', {results: results});
+        }
+    });
+});
+
+   // Question 4 goes here
+
+app.get('/providersSpec', (req,res) => {
+
+    // Retrieve data from database 
+    db.query('SELECT  provider_id, provider_specialty FROM providers', (err, results) =>{
+        if (err){
+            console.error(err);
+            res.status(500).send('Error Retrieving data')
+        }else {
+            //Display the records to the browser 
+            res.render('data', {results: results});
+        }
+    });
+});
+
 
 // Start the server 
-app.listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}`);
-
-    // Sending a message to the browser 
-    console.log('Sending message to browser...');
-    app.get('/', (req,res) => {
-        res.send('Server Started Successfully!');
-    });
-
-});
+const PORT = 3000
+app.listen(PORT, () => {
+  console.log(`server is runnig on http://localhost:${PORT}`)
+})
